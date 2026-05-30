@@ -37,7 +37,7 @@ const App = () => {
             setAddFormOpen((prev) => !prev);
           }}
         >
-          {isAddFormOpen ? "Close" : "Add"}
+          {isAddFormOpen ? "Close" : "Add Friend"}
         </Button>
       </div>
       {isBillFormOpen && (

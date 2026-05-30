@@ -3,13 +3,13 @@ import Button from "./Button";
 export default function SplitBillForm(props) {
   const friend = props.friends.find((item) => item.id == props.whichFriend);
 
-  const [whoIsPaying, setPayer] = useState("");
+  const [whoIsPaying, setPayer] = useState("You");
   const [billValue, setBillValue] = useState(0);
   const [yourExpenses, setYourExpenses] = useState(0);
 
   return (
     <form className="form-split-bill" onSubmit={(e) => e.preventDefault()}>
-      <h2>Split a bill with friend</h2>
+      <h2>Split a bill with {friend.name}</h2>
 
       <label>💰 Bill Value</label>
       <input
@@ -17,7 +17,7 @@ export default function SplitBillForm(props) {
         type="number"
         value={billValue}
         onChange={(e) => {
-          setBillValue(e.target.value);
+          setBillValue(Number(e.target.value));
         }}
       />
 
@@ -26,7 +26,7 @@ export default function SplitBillForm(props) {
         type="number"
         name="yourExpenses"
         value={yourExpenses}
-        onChange={(e) => setYourExpenses(e.target.value)}
+        onChange={(e) => setYourExpenses(Number(e.target.value))}
       />
 
       <label>🙍🏼‍♂️ Friend's expense</label>
@@ -35,6 +35,7 @@ export default function SplitBillForm(props) {
         name="friendExpense"
         value={billValue - yourExpenses}
         readOnly
+        disabled
       />
 
       <label>💰 Who is paying the bill?</label>
